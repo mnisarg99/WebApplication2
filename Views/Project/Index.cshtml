@@ -2,98 +2,129 @@
 @{
     ViewBag.Title = "Index";
 }
+@using (Html.BeginForm("Index", "Project"))
 
-<h2>Nisarg</h2>
+{
+    <h2>Project Details</h2>
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Project.CustomerName)
+            @Html.TextBoxFor(m => m.Project.CustomerName)
+            @Html.ValidationMessageFor(m => m.Project.CustomerName, "", new { @class = "text-danger" })
+        </div>
 
-<div class="form-group">
-    @Html.LabelFor(m => m.Project.CustomerName)
-    @Html.TextBoxFor(m => m.Project.CustomerName)
-</div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Project.ProjectName)
+            @Html.TextBoxFor(m => m.Project.ProjectName)
+            @Html.ValidationMessageFor(m => m.Project.ProjectName, "", new { @class = "text-danger" })
+        </div>
 
-<div class="form-group">
-    @Html.LabelFor(m => m.Project.ProjectName)
-    @Html.TextBoxFor(m => m.Project.ProjectName)
-</div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Project.ProjectId)
+            @Html.TextBoxFor(m => m.Project.ProjectId)
+            @Html.ValidationMessageFor(m => m.Project.ProjectId, "", new { @class = "text-danger" })
+        </div>
 
-<div class="form-group">
-    @Html.LabelFor(m => m.Project.ProjectId)
-    @Html.TextBoxFor(m => m.Project.ProjectId)
-</div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Project.StartDate)
+            @Html.EditorFor(m => m.Project.StartDate, "{DD/MM/YYYY}")
+            @Html.ValidationMessageFor(m => m.Project.StartDate, "", new { @class = "text-danger" })
+        </div>
 
-<div class="form-group">
-    @Html.LabelFor(m => m.Project.StartDate)
-    @Html.EditorFor(m => m.Project.StartDate, "{DD/MM/YYYY}")
-</div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Project.EndDate)
+            @Html.EditorFor(m => m.Project.EndDate, "{DD/MM/YYYY}")
+            @Html.ValidationMessageFor(m => m.Project.StartDate, "", new { @class = "text-danger" })
+        </div>
 
-<div class="form-group">
-    @Html.LabelFor(m => m.Project.EndDate)
-    @Html.EditorFor(m => m.Project.EndDate, "{DD/MM/YYYY}")
-</div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Project.ProjectStatus)
+            @Html.DropDownListFor(m => m.Project.ProjectStatus, new SelectList(Model.ProjectSta, "KeyId", "KeyName"), "select Status", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Project.ProjectStatus, "", new { @class = "text-danger" })
+        </div>
 
-<div class="form-group">
-    @Html.LabelFor(m => m.Project.ProjectStatus)
-    @Html.DropDownListFor(m => m.Project.ProjectStatus, new SelectList(Model.ProjectSta, "KeyId", "KeyName"), new { @class = "form-group" })
-</div>
 
-<div class="form-group">
-    @Html.LabelFor(m => m.Project.LocationGroup)
-    @Html.DropDownListFor(m => m.Project.LocationGroup, new SelectList(Model.Locationgroups, "Id", "Name"), new { @class = "form-group" })
-</div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Project.LocationGroup)
+            @Html.DropDownListFor(m => m.Project.LocationGroup, new SelectList(Model.Locationgroups, "Id", "Name"), "Select Location Group", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Project.LocationGroup, "", new { @class = "text-danger" })
+        </div>
 
-<div class="form-group">
-    @Html.LabelFor(m => m.Project.PayrollState)
-    @Html.DropDownListFor(m => m.Project.PayrollState, new SelectList(Model.PayrollStates, "Id", "Name"), new { @class = "form-group" })
-</div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Project.PayrollState)
+            @Html.DropDownListFor(m => m.Project.PayrollState, new SelectList(Model.PayrollStates, "Id", "Name"), "select State", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Project.PayrollState, "", new { @class = "text-danger" })
+        </div>
 
-<div class="form-group">
-    @Html.LabelFor(m => m.Project.SalesPerson)
-    @Html.DropDownListFor(m => m.Project.SalesPerson, new SelectList(Model.SalesPersons, "Id", "Name"), new { @class = "form-group" })
-</div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Project.SalesPerson)
+            @Html.DropDownListFor(m => m.Project.SalesPerson, new SelectList(Model.SalesPersons, "Id", "Name"), "Select Sales Person", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Project.SalesPerson, "", new { @class = "text-danger" })
+        </div>
 
-<div class="form-group">
-    @Html.LabelFor(m => m.Project.ProjectCategory)
-    @Html.DropDownListFor(m => m.Project.ProjectCategory, new SelectList(Model.ProjectCategories, "KeyId", "KeyName"), new { @class = "form-group" })
-</div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Project.ProjectCategory)
+            @Html.DropDownListFor(m => m.Project.ProjectCategory, new SelectList(Model.ProjectCategories, "KeyId", "KeyName"), "Select Category", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Project.ProjectCategory, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-<div class="form-group">
-    @Html.LabelFor(m => m.Project.ProjectType)
-    @Html.DropDownListFor(m => m.Project.ProjectType, new SelectList(Model.ProjectTypes, "KeyId", "KeyName"), new { @class = "form-group" })
-</div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Project.ProjectType)
+        @Html.DropDownListFor(m => m.Project.ProjectType, new SelectList(Model.ProjectTypes, "KeyId", "KeyName"),"Select Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Project.ProjectType, "", new { @class = "text-danger" })
+    </div>
 
-<div class="form-group">
-    @Html.LabelFor(m => m.Project.SubDomain)
-    @Html.DropDownListFor(m => m.Project.SubDomain, new SelectList(Model.SubDomains, "Id", "Name"), new { @class = "form-group" })
-</div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Project.SubDomain)
+        @Html.DropDownListFor(m => m.Project.SubDomain, new SelectList(Model.SubDomains, "Id", "Name"),"Select Domain", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Project.SubDomain, "", new { @class = "text-danger" })
+    </div>
 
-<div class="form-group">
-    @Html.LabelFor(m => m.Project.TimesheetRepresentative)
-    @Html.DropDownListFor(m => m.Project.TimesheetRepresentative, new SelectList(Model.TimesheetRepresentatives, "Id", "Name"), new { @class = "form-group" })
-</div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Project.TimesheetRepresentative)
+        @Html.DropDownListFor(m => m.Project.TimesheetRepresentative, new SelectList(Model.TimesheetRepresentatives, "Id", "Name"), "Select Representative", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Project.TimesheetRepresentative, "", new { @class = "text-danger" })
+    </div>
 
-<div class="form-group">
-    @Html.LabelFor(m => m.Project.ClientInvoiceGroup)
-    @Html.DropDownListFor(m => m.Project.ClientInvoiceGroup, new SelectList(Model.ClientInvoiceGroups, "KeyId", "KeyName"), new { @class = "form-group" })
-</div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Project.ClientInvoiceGroup)
+        @Html.DropDownListFor(m => m.Project.ClientInvoiceGroup, new SelectList(Model.ClientInvoiceGroups, "KeyId", "KeyName"),"Select Invoice", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Project.ClientInvoiceGroup, "", new { @class = "text-danger" })
+    </div>
 
-<div class="form-group">
-    @Html.LabelFor(m => m.Project.TimesheetType)
-    @Html.DropDownListFor(m => m.Project.TimesheetType, new SelectList(Model.TimesheetTypes, "KeyId", "KeyName"), new { @class = "form-group" })
-</div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Project.TimesheetType)
+        @Html.DropDownListFor(m => m.Project.TimesheetType, new SelectList(Model.TimesheetTypes, "KeyId", "KeyName"),"Select Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Project.TimesheetType, "", new { @class = "text-danger" })
+    </div>
 
-<div class="form-group">
-    @Html.LabelFor(m => m.Project.IsVmsTimesheet)
-    @Html.TextBoxFor(m => m.Project.IsVmsTimesheet)
-</div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Project.IsVmsTimesheet)
+        @Html.TextBoxFor(m => m.Project.IsVmsTimesheet)
+        @Html.ValidationMessageFor(m => m.Project.ClientInvoiceGroup, "", new { @class = "text-danger" })
+    </div>
 
-<div class="form-group">
-    @Html.LabelFor(m => m.Project.PracticeType)
-    @Html.DropDownListFor(m => m.Project.PracticeType, new SelectList(Model.PracticeTypes, "KeyId", "KeyName"), new { @class = "form-group" })
-</div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Project.PracticeType)
+        @Html.DropDownListFor(m => m.Project.PracticeType, new SelectList(Model.PracticeTypes, "KeyId", "KeyName"),"Select Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Project.PracticeType, "", new { @class = "text-danger" })
+    </div>
 
-<div class="form-group">
-    @Html.LabelFor(m => m.Project.Recruiter)
-    @Html.DropDownListFor(m => m.Project.Recruiter, new SelectList(Model.Recruiters, "Id", "Name"), new { @class = "form-group" })
-</div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Project.Recruiter)
+        @Html.DropDownListFor(m => m.Project.Recruiter, new SelectList(Model.Recruiters, "Id", "Name"),"Select Recruiter", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Project.Recruiter, "", new { @class = "text-danger" })
+    </div>
+
+    <button class="btn btn-primary">Save</button>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/custom-validator")
+}
 
 
 

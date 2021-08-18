@@ -20,6 +20,10 @@ namespace WebApplication2.Models
         public List<Projlist> SubDomains { get; set; }
         public List<Projlist> SalesPersons { get; set; }
         public List<Projlist> PayrollStates { get; set; }
+        public object CustomerName { get; set; }
+        public object ProjectName { get; set; }
+        public object ProjectId { get; set; }
+        
 
     }
 }

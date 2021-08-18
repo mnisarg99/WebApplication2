@@ -9,6 +9,10 @@ namespace WebApplication2.Models
     {
         public int KeyId { get; set; }
         public string KeyName { get; set; }
+        public string CustomerName { get; set; }
+        public string ProjectName { get; set; }
+        public string ProjectId { get; set; }
+        public List<Projlist> ProjectInfo { get; set; }
     }
 
     public class Projlist

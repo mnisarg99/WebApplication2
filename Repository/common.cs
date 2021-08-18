@@ -4,6 +4,8 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using WebApplication2.Models;
+using System.Web.Mvc;
+
 
 namespace WebApplication2.Repository
 {
@@ -184,5 +186,58 @@ namespace WebApplication2.Repository
             return appRefDataList;
 
         }
+
+        public ActionResult InsertUserDetails()
+        {
+            AppRefData objuser = new AppRefData();
+            DataSet ds = new DataSet();           
+            {
+                using (SqlCommand cmd = new SqlCommand("Project_DetailsPrabhu_Training", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@status", "GET");
+                    con.Open();
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    List<AppRefData> userlist = new List<AppRefData>();
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        AppRefData uobj = new AppRefData();
+                        uobj.CustomerName = ds.Tables[0].Rows[i]["CustomerName"].ToString();
+                        uobj.ProjectName = ds.Tables[0].Rows[i]["ProjectName"].ToString();
+                        uobj.ProjectId = ds.Tables[0].Rows[i]["ProjectId"].ToString();
+                       
+                        userlist.Add(uobj);
+                    }
+                    objuser.ProjectInfo = userlist;
+                }
+                con.Close();
+            }
+            return View(objuser);
+        }
+
+        [HttpPost]
+        public bool AddEmployee(ProjectAddEditViewModel obj)
+        {
+
+            Connection();
+            SqlCommand com = new SqlCommand("AddNewEmpDetails", con);
+            com.CommandType = CommandType.StoredProcedure;
+            com.Parameters.AddWithValue("@CustomerName", obj.CustomerName);
+            com.Parameters.AddWithValue("@ProjectName", obj.ProjectName);
+            com.Parameters.AddWithValue("@ProjectId", obj.ProjectId);
+            con.Open();
+            int i = com.ExecuteNonQuery();
+            con.Close();
+            if (i >= 1)
+            {
+               return true;
+            }
+            else
+            {
+               return false;
+            }
+        }
+
     }
 }
