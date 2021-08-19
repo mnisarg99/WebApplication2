@@ -12,12 +12,14 @@ namespace WebApplication2.Models
         public string CustomerName { get; set; }
         public string ProjectName { get; set; }
         public string ProjectId { get; set; }
-        public List<Projlist> ProjectInfo { get; set; }
+        public List<AppRefData> ProjectInfo { get; set; }
+        
     }
 
     public class Projlist
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        
     }
 }

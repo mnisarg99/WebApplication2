@@ -11,9 +11,9 @@ namespace WebApplication2.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter Company Name")]
         public string CustomerName { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter Project Name")]
-        public int ProjectName { get; set; }
+        public string ProjectName { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please Select Project ID")]
-        public int ProjectId { get; set; }
+        public string ProjectId { get; set; }
         [Required]
         [DataType(DataType.Date)]
         public DateTime StartDate { get; set; }
