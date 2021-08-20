@@ -1,7 +1,37 @@
-﻿
+﻿@model WebApplication2.Models.ProjectAddEditViewModel
 @{
-    ViewBag.Title = "Table";
+    ViewBag.Title = "Index";
 }
+@using (Html.BeginForm("Save", "Project"))
+{
 
 <h2>Table</h2>
+
+<table class="table" border="1" cellpadding="1" style="border:solid" width="100%">
+
+    <tr>
+        <th>Customer Name</th>
+        <th>Project Name</th>
+        <th>Project Id</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Project Status</th>
+        <th>Location Group</th>
+        <th>Payroll State</th>
+        <th>Sales Person</th>
+        <th>Project Category</th>
+        <th>Project Type</th>
+        <th>Sub Domain</th>
+        <th>Timesheet Representative</th>
+        <th>Client Invoice Group</th>
+        <th>Timesheet Type</th>
+        <th>Is VMS Timesheet</th>
+        <th>Practice Type</th>
+        <th>Recruiter</th>
+    </tr>
+</table>
+@Html.ActionLink("Create", "Index")
+
+}
+
 

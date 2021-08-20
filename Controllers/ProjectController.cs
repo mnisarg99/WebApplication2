@@ -61,7 +61,7 @@ namespace WebApplication2.Controllers
 
             return View(PVM);
         }
-        public bool Save(ProjectAddEditViewModel model)
+        public ActionResult Save(ProjectAddEditViewModel model)
         {
             Connection();
             SqlCommand com = new SqlCommand("ProjectDetails_Nisarg_Training", con);
@@ -90,11 +90,11 @@ namespace WebApplication2.Controllers
             con.Close();
             if (i >= 1)
             {
-                return true;
+                return View();
             }
             else
             {
-                return false;
+                return View();
             }
         }
             
