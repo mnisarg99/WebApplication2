@@ -97,9 +97,12 @@ namespace WebApplication2.Controllers
                 return View();
             }
         }
-            
-            
+        public ActionResult GetList()
+        {
+            ViewBag.Message = "Your contact page.";
 
-            
+            return View();
         }
+
     }
+}

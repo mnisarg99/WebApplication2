@@ -1,0 +1,135 @@
+﻿@model IEnumerable<WebApplication2.Models.Project>
+
+@{
+    ViewBag.Title = "GetList";
+}
+
+<h2>GetList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationGroup)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PayrollState)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SalesPerson)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectCategory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubDomain)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimesheetRepresentative)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientInvoiceGroup)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimesheetType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsVmsTimesheet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PracticeType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Recruiter)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationGroup)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PayrollState)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SalesPerson)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectCategory)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubDomain)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimesheetRepresentative)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClientInvoiceGroup)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimesheetType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsVmsTimesheet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PracticeType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Recruiter)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProjectId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProjectId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProjectId })
+        </td>
+    </tr>
+}
+
+</table>
+
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+</script>
