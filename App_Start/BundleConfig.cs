@@ -25,16 +25,15 @@ namespace WebApplication2
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                      "~/Scripts/DataTables/dataTables.bootstrap.js"));
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+                        bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+            "~/Content/DataTables/css/dataTables.bootstrap.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-            "~/Content/DataTables/css/dataTables.bootstrap.css"));
+                      "~/Scripts/DataTables/dataTables.bootstrap.js"));
         }
     }
 }

@@ -129,7 +129,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Api\ProjectController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\SampleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -352,6 +352,7 @@
     <Content Include="Views\Home\Table.cshtml" />
     <Content Include="Views\Project\Save.cshtml" />
     <Content Include="Views\Project\GetList.cshtml" />
+    <Content Include="Views\Project\AddProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
