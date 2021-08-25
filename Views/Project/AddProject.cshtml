@@ -42,9 +42,7 @@
         <div class="form-group">
             <label>Project Status</label>
             <select id="ddlProjectStatus" class="form-control">
-                <option value="1">Select Project Status</option>
-                <option value="2">Active</option>
-                <option value="3">Inactive</option>
+              
             </select>
         </div>
         <div class="form-group">
@@ -114,7 +112,19 @@
 @section scripts{
 
     <script>$(document).ready(function(){
-            BindProjectTypeList();
+    BindProjectStatusList();
+    BindProjectCategoryList();
+    BindProjectList();
+    BindProjectInvoiceList();
+    BindProjectTimesheetTypeList();
+    BindProjectPracticeTypeList();
+    BindProjectRecruiterList();
+    BindProjectLocationGroupList();
+    BindProjectRepresentativeList();
+    BindProjectSubDomainList();
+    BindProjectSalesPersonList();
+    BindProjectPayrollStateList();
+
             $("#btnSave").on("click", function () {
                 if (IsValidate()) {
                     SaveData();
@@ -156,10 +166,10 @@
 
         }
 
-        function BindProjectTypeList() {
+        function BindProjectStatusList() {
             $.ajax({
                 method: "GET",
-                url: "/Project/GetAppRefData?parentId=1800",
+                url: "/Project/ProjectStatus?parentId=1800",
                 success: function (data) {
                     console.log(data);
 
@@ -168,5 +178,148 @@
                 error: function () { }
             });
         } 
+
+        function BindProjectCategoryList() {
+            $.ajax({
+                method: "GET",
+                url: "/Sample/GetProjectCategoryNisarg?parentId=19491",
+                success: function (data) {
+                    console.log(data);
+
+                    //ddlProjectType
+                },
+                error: function () { }
+            });
+        } 
+
+        function BindProjectList() {
+            $.ajax({
+                method: "GET",
+                url: "/Sample/GetProjectTypeNisarg?parentId=4650",
+                success: function (data) {
+                    console.log(data);
+
+                    //ddlProjectType
+                },
+                error: function () { }
+            });
+        }
+
+        function BindProjectInvoiceList() {
+            $.ajax({
+                method: "GET",
+                url: "/Sample/GetProjectInvoiceNisarg?parentId=10300",
+                success: function (data) {
+                    console.log(data);
+
+                    //ddlProjectType
+                },
+                error: function () { }
+            });
+        }
+
+        function BindProjectTimesheetTypeList() {
+            $.ajax({
+                method: "GET",
+                url: "/Sample/GetProjectTimesheetTypeNisarg?parentId=13120",
+                success: function (data) {
+                    console.log(data);
+
+                    //ddlProjectType
+                },
+                error: function () { }
+            });
+        }
+
+        function BindProjectPracticeTypeList() {
+            $.ajax({
+                method: "GET",
+                url: "/Sample/GetProjectPracticeTypeNisarg?parentId=15760",
+                success: function (data) {
+                    console.log(data);
+
+                    //ddlProjectType
+                },
+                error: function () { }
+            });
+        }
+
+        function BindProjectRecruiterList() {
+            $.ajax({
+                method: "GET",
+                url: "/Sample/GetProjectRecruiterNisarg?",
+                success: function (data) {
+                    console.log(data);
+
+                    //ddlProjectType
+                },
+                error: function () { }
+            });
+        }
+
+        function BindProjectLocationGroupList() {
+            $.ajax({
+                method: "GET",
+                url: "/Sample/GetProjectLocationGroupNisarg?",
+                success: function (data) {
+                    console.log(data);
+
+                    //ddlProjectType
+                },
+                error: function () { }
+            });
+        }
+
+        function BindProjectRepresentativeList() {
+            $.ajax({
+                method: "GET",
+                url: "/Sample/GetProjectTimesheetRepresentativeNisarg?",
+                success: function (data) {
+                    console.log(data);
+
+                    //ddlProjectType
+                },
+                error: function () { }
+            });
+        }
+
+        function BindProjectSubDomainList() {
+            $.ajax({
+                method: "GET",
+                url: "/Sample/GetProjectSubDomainNisarg?",
+                success: function (data) {
+                    console.log(data);
+
+                    //ddlProjectType
+                },
+                error: function () { }
+            });
+        }
+
+        function BindProjectSalesPersonList() {
+            $.ajax({
+                method: "GET",
+                url: "/Sample/GetProjectSalesPersonNisarg?",
+                success: function (data) {
+                    console.log(data);
+
+                    //ddlProjectType
+                },
+                error: function () { }
+            });
+        }
+
+        function BindProjectPayrollStateList() {
+            $.ajax({
+                method: "GET",
+                url: "/Sample/GetProjectPayrollStateNisarg?",
+                success: function (data) {
+                    console.log(data);
+
+                    //ddlProjectType
+                },
+                error: function () { }
+            });
+        }
     </script>
 }
