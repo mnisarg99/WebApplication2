@@ -163,12 +163,14 @@ namespace WebApplication2.Repository
 
         }
 
-        public List<Projlist> GetPayrollState()
+        public List<Projlist> GetPayrollState(int countryId)
         {
             List<Projlist> appRefDataList = new List<Projlist>();
             Connection();
             SqlCommand cmd = new SqlCommand("Get_PayrollState_Nisarg", con);
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@countryId", SqlDbType.Int);
+            cmd.Parameters["@countryId"].Value = countryId;
 
             con.Open();
 

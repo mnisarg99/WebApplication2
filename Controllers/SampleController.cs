@@ -38,7 +38,7 @@ namespace WebApplication2.Controllers
             var timesheet = objRepo.GetTimesheet();
             var dom = objRepo.GetDomain();
             var salesperson = objRepo.GetSalesper();
-            var paystate = objRepo.GetPayrollState();
+            var paystate = objRepo.GetPayrollState(1);
 
 
             var PVM = new ProjectAddEditViewModel

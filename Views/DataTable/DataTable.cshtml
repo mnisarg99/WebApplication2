@@ -1,0 +1,101 @@
+﻿
+@{ 
+    ViewBag.Title = "DataTable"; 
+ }
+
+<h2>Projects List</h2>
+
+<table id="prjList" class="table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Status</th>
+
+            <th>
+                CustomerName
+            </th>
+            <th>
+                ProjectName
+            </th>
+            <th>
+                StartDate
+            </th>
+            <th>
+                EndDate
+            </th>
+            <th>
+                ProjectStatus
+            </th>
+            <th>
+                LocationGroup
+            </th>
+            <th>
+                PayrollState
+            </th>
+            <th>
+                SalesPerson
+            </th>
+            <th>
+                ProjectCategory
+            </th>
+            <th>
+                ProjectType
+            </th>
+            <th>
+                SubDomain
+            </th>
+            <th>
+                TimesheetRepresentative
+            </th>
+            <th>
+                ClientInvoiceGroup
+            </th>
+            <th>
+                TimesheetType
+            </th>
+            <th>
+                IsVmsTimesheet
+            </th>
+            <th>
+                PracticeType
+            <th>
+                Recruiter
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+
+</table>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+            $("#prjList").DataTable({
+                ajax: {
+                    url: "/ProjectApi/GetProjectStatus?parentId=1800",
+                    dataSrc:""
+                },
+                columns: [
+                    {
+                        data: "keyId"
+                    },
+                    {
+                        data: "keyName",
+                        render: function (data) { return "" + data }
+                    }]
+            });
+
+       });
+    </script>
+}
+
+
+
+
+
+
+
+
+

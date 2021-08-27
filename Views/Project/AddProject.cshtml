@@ -7,57 +7,57 @@
 
 <form>
     <div class="col-md-6">
-        
+
         <div class="form-group">
             <label>Customer Name</label>
             <input type="text" id="CustomerName" class="form-control">
         </div>
 
         @*<div class="form-group">
-            <label>Working company</label>
-            <select id="workingCompany">
-                <option value="1">Compunnel India</option>
-                <option value="2">Compunnel Healthcare</option>
-                <option value="3">Logix India</option>
-            </select>
-        </div>*@
+                <label>Working company</label>
+                <select id="workingCompany">
+                    <option value="1">Compunnel India</option>
+                    <option value="2">Compunnel Healthcare</option>
+                    <option value="3">Logix India</option>
+                </select>
+            </div>*@
         <div class="form-group">
             <label>Project Name</label>
-            <select id="ddlProjectName" class="form-control">
-            </select>
+            <input type="text" id="ProjectName" class="form-control">
         </div>
         <div class="form-group">
             <label>Project Id</label>
-            <select id="ddlProjectId" class="form-control">
-            </select>
+            <input type="text" id="ProjectId" class="form-control">
         </div>
         <div class="form-group">
             <label>Start Date</label>
-            <input type="date" id="ddlStartDate" class="form-control">
+            <input type="date" id="StartDate" class="form-control">
         </div>
         <div class="form-group">
             <label>End Date</label>
-            <input type="date" id="ddlEndDate" class="form-control">
+            <input type="date" id="EndDate" class="form-control">
         </div>
         <div class="form-group">
             <label>Project Status</label>
             <select id="ddlProjectStatus" class="form-control">
-              
             </select>
         </div>
         <div class="form-group">
             <label>Location Group</label>
             <select id="ddlLocationGroup" class="form-control">
+            <option value="" disabled selected hidden>Select Location Group</option>
             </select>
         </div>
         <div class="form-group">
             <label>Payroll State</label>
             <select id="ddlPayrollState" class="form-control">
+            <option value="" disabled selected hidden>Select Payroll State</option>
             </select>
         </div>
         <div class="form-group">
             <label>Sales Person</label>
             <select id="ddlSalesPerson" class="form-control">
+            <option value="" disabled selected hidden>Select Sales Person</option>
             </select>
         </div>
     </div>
@@ -93,8 +93,8 @@
     </div>
     <div class="form-group">
         <label>Is Vms Timesheet</label>
-        <select id="ddlIsVmsTimesheet" class="form-control">
-        </select>
+        <input type="radio" id="ddlIsVmsYes" name="IsVmsTimeSheet" value="Yes"><label for="ddlIsVmsYes">Yes</label>
+        <input type="radio" id="ddlIsVmsNo" name="IsVmsTimeSheet" value="No"><label for="ddlIsVmsNo">No</label>
     </div>
     <div class="form-group">
         <label>Practice Type</label>
@@ -111,19 +111,25 @@
 
 @section scripts{
 
-    <script>$(document).ready(function(){
-    BindProjectStatusList();
-    BindProjectCategoryList();
-    BindProjectList();
-    BindProjectInvoiceList();
-    BindProjectTimesheetTypeList();
-    BindProjectPracticeTypeList();
-    BindProjectRecruiterList();
-    BindProjectLocationGroupList();
-    BindProjectRepresentativeList();
-    BindProjectSubDomainList();
-    BindProjectSalesPersonList();
-    BindProjectPayrollStateList();
+    <script>
+        $(document).ready(function () {
+            const ProjectType = 4650,
+                ProjectStatus = 1800;
+
+            bindAppRefDataList(ddlProjectType, ProjectType);
+            bindAppRefDataList(ddlProjectStatus, ProjectStatus);
+            //BindProjectStatusList();
+            BindProjectCategoryList();
+            //BindProjectList();
+            BindProjectInvoiceList();
+            BindProjectTimesheetTypeList();
+            BindProjectPracticeTypeList();
+            BindProjectRecruiterList();
+            BindProjectLocationGroupList();
+            BindProjectRepresentativeList();
+            BindProjectSubDomainList();
+            BindProjectSalesPersonList();
+            BindProjectPayrollStateList();
 
             $("#btnSave").on("click", function () {
                 if (IsValidate()) {
@@ -132,74 +138,157 @@
 
             });
         });
+        function clearMessageJQ(ele) {
+            $(ele).siblings('span.error').remove();
+        }
+
+        function addErrorMessageJQ(ele, msg) {
+            const errorCtrl = $('<span />').addClass('error').html(msg);
+            $(ele).closest('div').append(errorCtrl);
+        }
+
+        function ProjNameValidation() {
+            let flag = true;
+            const ele = $('#ProjectName');
+            clearMessageJQ(ele)
+            const ProjName = $('#ProjectName').val();
+
+
+
+            if (ProjName === "" || ProjName.length <= 2 || !isNaN(ProjName.split('')[0])) {
+                addErrorMessageJQ(ele, 'Please fill the Project Name');
+                console.log(ProjName);
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
+
+        function ProjIdValidation() {
+            let flag = true;
+            const ele = $('#ProjectId');
+            clearMessageJQ(ele)
+            const ProjId = $('#ProjectId').val();
+
+
+
+            if (ProjId === "" || ProjId.length <= 2 || !isNaN(ProjId.split('')[0])) {
+                addErrorMessageJQ(ele, 'Please fill the Project Id');
+                console.log(ProjId);
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
 
         function IsValidate() {
+            if (!ProjNameValidation()) {
+                flag = false;
+            }
+            if (!ProjIdValidation()) {
+                flag = false;
+            }
             return true;
+            
         }
         function SaveData() {
-            let vm = {
-                Name: "",
-                //CompanyId: 0,
-                startdate: 0,
-                enddate: 0,
-                projectstatus: 0,
-                locationgroup: 0,
+            let project =
+            {
+                CustomerName: "",
+                ProjectName: "",
+                ProjectId: "",
+                startdate: "",
+                enddate: "",
+                projectstatus: "",
+                locationgroup: "",
+                PayrollState: "",
+                SalesPerson: "",
+                ProjectCategory: "",
+                ProjectType: "",
+                SubDomain: "",
+                TimesheetRepresentative: "",
+                ClientInvoiceGroup: "",
+                TimesheetType: "",
+                IsprojectsTimesheet: "",
+                PracticeType: "",
+                Recruiter: "",
             };
-            vm.Name = $("#CustomerName").val();
-            //vm.CompanyId = $("#workingCompany").val();
-            vm.projectstatus = $("#ddlProjectStatus").val();
-            vm.startdate = $("#ddlStartDate").val();
-            vm.enddate = $("#ddlEndDate").val();
-            vm.locationgroup = $("#ddlLocationGroup").val();
 
-            console.log(vm);
+            project.CustomerName = $("#CustomerName").val();
+            project.ProjectName = $("#ProjectName").val();
+            project.ProjectId = $("#ProjectId").val();
+            project.startdate = $("#StartDate").val();
+            project.enddate = $("#EndDate").val();
+            project.projectstatus = $("#ddlProjectStatus :selected").text();
+            project.locationgroup = $("#ddlLocationGroup :selected").text();
+            project.PayrollState = $("#ddlPayrollState :selected").text();
+            project.SalesPerson = $("#ddlSalesPerson :selected").text();
+            project.ProjectCategory = $("#ddlProjectCategory :selected").text();
+            project.ProjectType = $("#ddlProjectType :selected").text();
+            project.SubDomain = $("#ddlSubDomain :selected").text();
+            project.TimesheetRepresentative = $("#ddlTimesheetRepresentative :selected").text();
+            project.ClientInvoiceGroup = $("#ddlClientInvoiceGroup :selected").text();
+            project.TimesheetType = $("#ddlTimesheetType :selected").text();
+            project.IsprojectsTimesheet = $("#ddlIsprojectsYes :selected").text();
+            project.PracticeType = $("#ddlPracticeType :selected").text();
+            project.Recruiter = $("#ddlRecruiter :selected").text();
+
+            console.log(project);
             $.ajax({
                 method: "POST",
                 url: "/Project/AddProject",
                 dataType: "json",
-                data: vm,
+                data: project,
                 success: function () { },
                 error: function () { }
             });
-
-
 
         }
 
         function BindProjectStatusList() {
             $.ajax({
                 method: "GET",
-                url: "/Project/ProjectStatus?parentId=1800",
+                url: "/ProjectApi/GetProjectStatus?parentId=1800",
                 success: function (data) {
                     console.log(data);
 
-                    //ddlProjectType
+                    $(data).each(function () {
+                        $("#ddlProjectStatus").append($("<option></option>").val(this.keyId).html(this.keyName));
+                    });
                 },
+
                 error: function () { }
             });
-        } 
+        }
 
         function BindProjectCategoryList() {
             $.ajax({
                 method: "GET",
-                url: "/Sample/GetProjectCategoryNisarg?parentId=19491",
+                url: "/ProjectApi/GetProjectCategory?parentId=19491",
                 success: function (data) {
                     console.log(data);
 
-                    //ddlProjectType
+                    $(data).each(function () {
+                        $("#ddlProjectCategory").append($("<option></option>").val(this.keyId).html(this.keyName));
+                    });
                 },
+
                 error: function () { }
             });
-        } 
+        }
 
         function BindProjectList() {
             $.ajax({
                 method: "GET",
-                url: "/Sample/GetProjectTypeNisarg?parentId=4650",
+                url: "/ProjectApi/GetProjectType?parentId=4650",
                 success: function (data) {
                     console.log(data);
 
-                    //ddlProjectType
+                    $(data).each(function () {
+                        $("#ddlProjectType").append($("<option></option>").val(this.keyId).html(this.keyName));
+                    });
                 },
                 error: function () { }
             });
@@ -208,11 +297,13 @@
         function BindProjectInvoiceList() {
             $.ajax({
                 method: "GET",
-                url: "/Sample/GetProjectInvoiceNisarg?parentId=10300",
+                url: "/ProjectApi/GetProjectInvoice?parentId=10300",
                 success: function (data) {
                     console.log(data);
 
-                    //ddlProjectType
+                    $(data).each(function () {
+                        $("#ddlClientInvoiceGroup").append($("<option></option>").val(this.keyId).html(this.keyName));
+                    });
                 },
                 error: function () { }
             });
@@ -221,11 +312,13 @@
         function BindProjectTimesheetTypeList() {
             $.ajax({
                 method: "GET",
-                url: "/Sample/GetProjectTimesheetTypeNisarg?parentId=13120",
+                url: "/ProjectApi/GetProjectTimesheetType?parentId=13120",
                 success: function (data) {
                     console.log(data);
 
-                    //ddlProjectType
+                    $(data).each(function () {
+                        $("#ddlTimesheetType").append($("<option></option>").val(this.keyId).html(this.keyName));
+                    });
                 },
                 error: function () { }
             });
@@ -234,11 +327,13 @@
         function BindProjectPracticeTypeList() {
             $.ajax({
                 method: "GET",
-                url: "/Sample/GetProjectPracticeTypeNisarg?parentId=15760",
+                url: "/ProjectApi/GetProjectPracticeType?parentId=15760",
                 success: function (data) {
                     console.log(data);
 
-                    //ddlProjectType
+                    $(data).each(function () {
+                        $("#ddlPracticeType").append($("<option></option>").val(this.keyId).html(this.keyName));
+                    });
                 },
                 error: function () { }
             });
@@ -247,11 +342,13 @@
         function BindProjectRecruiterList() {
             $.ajax({
                 method: "GET",
-                url: "/Sample/GetProjectRecruiterNisarg?",
+                url: "/ProjectApi/GetProjectRecruiter",
                 success: function (data) {
                     console.log(data);
 
-                    //ddlProjectType
+                    $(data).each(function () {
+                        $("#ddlRecruiter").append($("<option></option>").val(this.id).html(this.name));
+                    });
                 },
                 error: function () { }
             });
@@ -260,11 +357,13 @@
         function BindProjectLocationGroupList() {
             $.ajax({
                 method: "GET",
-                url: "/Sample/GetProjectLocationGroupNisarg?",
+                url: "/ProjectApi/GetProjectLocationGroup?",
                 success: function (data) {
                     console.log(data);
 
-                    //ddlProjectType
+                    $(data).each(function () {
+                        $("#ddlLocationGroup").append($("<option></option>").val(this.id).html(this.name));
+                    });
                 },
                 error: function () { }
             });
@@ -273,11 +372,13 @@
         function BindProjectRepresentativeList() {
             $.ajax({
                 method: "GET",
-                url: "/Sample/GetProjectTimesheetRepresentativeNisarg?",
+                url: "/ProjectApi/GetProjectTimesheetRepresentative?",
                 success: function (data) {
                     console.log(data);
 
-                    //ddlProjectType
+                    $(data).each(function () {
+                        $("#ddlTimesheetRepresentative").append($("<option></option>").val(this.id).html(this.name));
+                    });
                 },
                 error: function () { }
             });
@@ -286,11 +387,13 @@
         function BindProjectSubDomainList() {
             $.ajax({
                 method: "GET",
-                url: "/Sample/GetProjectSubDomainNisarg?",
+                url: "/ProjectApi/GetProjectSubDomain?",
                 success: function (data) {
                     console.log(data);
 
-                    //ddlProjectType
+                    $(data).each(function () {
+                        $("#ddlSubDomain").append($("<option></option>").val(this.id).html(this.name));
+                    });
                 },
                 error: function () { }
             });
@@ -299,11 +402,13 @@
         function BindProjectSalesPersonList() {
             $.ajax({
                 method: "GET",
-                url: "/Sample/GetProjectSalesPersonNisarg?",
+                url: "/ProjectApi/GetProjectSalesPerson?",
                 success: function (data) {
                     console.log(data);
 
-                    //ddlProjectType
+                    $(data).each(function () {
+                        $("#ddlSalesPerson").append($("<option></option>").val(this.id).html(this.name));
+                    });
                 },
                 error: function () { }
             });
@@ -312,11 +417,30 @@
         function BindProjectPayrollStateList() {
             $.ajax({
                 method: "GET",
-                url: "/Sample/GetProjectPayrollStateNisarg?",
+                url: "/ProjectApi/GetProjectPayrollState?countryId=1",
                 success: function (data) {
                     console.log(data);
 
-                    //ddlProjectType
+                    $(data).each(function () {
+                        $("#ddlPayrollState").append($("<option></option>").val(this.id).html(this.name));
+                    });
+                },
+                error: function () { }
+            });
+        }
+
+        function bindAppRefDataList(ctrl, parentId) {
+            //
+            $.ajax({
+                method: "GET",
+                url: "/ProjectApi/GetAppRefData?parentId=" + parentId,
+                success: function (data) {
+                    //  console.log(data);
+                    $(ctrl).empty();
+
+                    $(data).each(function () {
+                        $(ctrl).append($("<option></option>").val(this.keyId).html(this.keyName));
+                    });
                 },
                 error: function () { }
             });

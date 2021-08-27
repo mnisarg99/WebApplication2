@@ -36,7 +36,7 @@
             @Html.EditorFor(m => m.Project.EndDate, "{DD/MM/YYYY}")
             @Html.ValidationMessageFor(m => m.Project.StartDate, "", new { @class = "text-danger" })
         </div>
-
+    
         <div class="form-group">
             @Html.LabelFor(m => m.Project.ProjectStatus)
             @Html.DropDownListFor(m => m.Project.ProjectStatus, new SelectList(Model.ProjectSta, "KeyId", "KeyName"), "select Status", new { @class = "form-control" })

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WebApplication2.Models;
 using WebApplication2.Repository;
 
 namespace WebApplication2.Controllers.Api
@@ -11,17 +12,14 @@ namespace WebApplication2.Controllers.Api
     public class ProjectController : ApiController
     {
         [HttpPost]
-        [Route("Sample/AddProjectNisarg")]
-        public IHttpActionResult AddProject(ProjectController Pr)
+        [Route("ProjectApi/AddProject")]
+        public IHttpActionResult AddProject(Project Pr)
         {
-            common objRepo = new common();
-            var appRefStatus = objRepo.GetAppRefData(1800);
-            return Ok(appRefStatus);
-         
+           return Ok();
         }
 
         [HttpGet]
-        [Route("Sample/GetProjectStatusNisarg")]
+        [Route("ProjectApi/GetProjectStatus")]
         public IHttpActionResult ProjectStatus(int parentId)
         {
             common objRepo = new common();
@@ -30,7 +28,7 @@ namespace WebApplication2.Controllers.Api
         }
 
         [HttpGet]
-        [Route("Sample/GetProjectCategoryNisarg")]
+        [Route("ProjectApi/GetProjectCategory")]
         public IHttpActionResult ProjectCategory(int parentId)
         {
             common objRepo = new common();
@@ -39,7 +37,7 @@ namespace WebApplication2.Controllers.Api
         }
 
         [HttpGet]
-        [Route("Sample/GetProjectTypeNisarg")]
+        [Route("ProjectApi/GetProjectType")]
         public IHttpActionResult ProjectType(int parentId)
         {
             common objRepo = new common();
@@ -48,7 +46,7 @@ namespace WebApplication2.Controllers.Api
         }
 
         [HttpGet]
-        [Route("Sample/GetProjectInvoiceNisarg")]
+        [Route("ProjectApi/GetProjectInvoice")]
         public IHttpActionResult ProjectInvoice(int parentId)
         {
             common objRepo = new common();
@@ -57,7 +55,7 @@ namespace WebApplication2.Controllers.Api
         }
 
         [HttpGet]
-        [Route("Sample/GetProjectTimesheetTypeNisarg")]
+        [Route("ProjectApi/GetProjectTimesheetType")]
         public IHttpActionResult ProjectTimesheetType(int parentId)
         {
             common objRepo = new common();
@@ -66,7 +64,7 @@ namespace WebApplication2.Controllers.Api
         }
 
         [HttpGet]
-        [Route("Sample/GetProjectPracticeTypeNisarg")]
+        [Route("ProjectApi/GetProjectPracticeType")]
         public IHttpActionResult ProjectPracticeType(int parentId)
         {
             common objRepo = new common();
@@ -75,7 +73,7 @@ namespace WebApplication2.Controllers.Api
         }
 
         [HttpGet]
-        [Route("Sample/GetProjectRecruiterNisarg")]
+        [Route("ProjectApi/GetProjectRecruiter")]
         public IHttpActionResult ProjectRecruiter()
         {
             common objRepo = new common();
@@ -84,7 +82,7 @@ namespace WebApplication2.Controllers.Api
         }
 
         [HttpGet]
-        [Route("Sample/GetProjectLocationGroupNisarg")]
+        [Route("ProjectApi/GetProjectLocationGroup")]
         public IHttpActionResult ProjectLocationGroup()
         {
             common objRepo = new common();
@@ -93,7 +91,7 @@ namespace WebApplication2.Controllers.Api
         }
 
         [HttpGet]
-        [Route("Sample/GetProjectTimesheetRepresentativeNisarg")]
+        [Route("ProjectApi/GetProjectTimesheetRepresentative")]
         public IHttpActionResult ProjectTimesheetRepresentative()
         {
             common objRepo = new common();
@@ -102,7 +100,7 @@ namespace WebApplication2.Controllers.Api
         }
 
         [HttpGet]
-        [Route("Sample/GetProjectSubDomainNisarg")]
+        [Route("ProjectApi/GetProjectSubDomain")]
         public IHttpActionResult ProjectSubDomain()
         {
             common objRepo = new common();
@@ -111,7 +109,7 @@ namespace WebApplication2.Controllers.Api
         }
 
         [HttpGet]
-        [Route("Sample/GetProjectSalesPersonNisarg")]
+        [Route("ProjectApi/GetProjectSalesPerson")]
         public IHttpActionResult ProjectSalesPerson()
         {
             common objRepo = new common();
@@ -120,12 +118,21 @@ namespace WebApplication2.Controllers.Api
         }
 
         [HttpGet]
-        [Route("Sample/GetProjectPayrollStateNisarg")]
-        public IHttpActionResult ProjectPayrollState()
+        [Route("ProjectApi/GetProjectPayrollState")]
+        public IHttpActionResult ProjectPayrollState(int countryId)
         {
             common objRepo = new common();
-            var paystate = objRepo.GetPayrollState();
+            var paystate = objRepo.GetPayrollState(countryId);
             return Ok(paystate);
+        }
+
+        [HttpGet]
+        [Route("ProjectApi/GetAppRefData")]
+        public IHttpActionResult GetAppRefData(int parentId)
+        {
+            common objRepo = new common();
+            var appRefList = objRepo.GetAppRefData(parentId);
+            return Ok(appRefList);
         }
     }
 }
