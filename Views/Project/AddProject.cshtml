@@ -70,27 +70,31 @@
     <div class="form-group">
         <label>Project Type</label>
         <select id="ddlProjectType" class="form-control">
-            @*<option>Select Project Type</option>*@   
+            <option>Select Project Type</option>   
         </select>
     </div>
     <div class="form-group">
         <label>Sub Domain</label>
         <select id="ddlSubDomain" class="form-control">
+            <option>Select Sub Domain</option>
         </select>
     </div>
     <div class="form-group">
         <label>Timesheet Representative</label>
         <select id="ddlTimesheetRepresentative" class="form-control">
+            <option>Select Timesheet Representative</option>
         </select>
     </div>
     <div class="form-group">
         <label>Client Invoice Group</label>
         <select id="ddlClientInvoiceGroup" class="form-control">
+            <option>Select Client Invoice Group</option>
         </select>
     </div>
     <div class="form-group">
         <label>Timesheet Type</label>
         <select id="ddlTimesheetType" class="form-control">
+            <option>Select Timesheet Type</option>
         </select>
     </div>
     <div class="form-group">
@@ -101,11 +105,13 @@
     <div class="form-group">
         <label>Practice Type</label>
         <select id="ddlPracticeType" class="form-control">
+            <option>Select Practice Type</option>
         </select>
     </div>
     <div class="form-group">
         <label>Recruiter</label>
         <select id="ddlRecruiter" class="form-control">
+            <option>Select Recruiter</option>
         </select>
     </div>
     <input type="button" value="Save" id="btnSave" />
@@ -251,7 +257,7 @@
             clearMessageJQ(ele)
             const ProjProjectCategory = $('#ddlProjectCategory').val();
 
-            if (ProjProjectCategory == "Select Project Category") {
+            if (ProjProjectCategory === "Select Project Category") {
                 addErrorMessageJQ(ele, "Please fill the Category");
                 console.log(ProjProjectCategory);
                 flag = false;
@@ -261,15 +267,111 @@
             return flag;
         }
 
-        function ProjProjectTypeValidation() {
-            let flag = true;
-            const ele = $('#ddlProjectType');
-            clearMessageJQ(ele)
-            const ProjProjectType = $('#ddlProjectType').val();
+        //function ProjProjectTypeValidation() {
+        //    let flag = true;
+        //    const ele = $('#ddlProjectType');
+        //    clearMessageJQ(ele)
+        //    const ProjProjectType = $('#ddlProjectType').val();
 
-            if (ProjProjectType == "") {
-                addErrorMessageJQ(ele, "Please fill the Type");
-                console.log(ProjProjectType);
+        //    if (ProjProjectType === "Select Project Type") {
+        //        addErrorMessageJQ(ele, "Please fill the Type");
+        //        console.log(ProjProjectType);
+        //        flag = false;
+        //    } else {
+        //        flag = true;
+        //    }
+        //    return flag;
+        //}
+
+        function ProjSubDomainValidation() {
+            let flag = true;
+            const ele = $('#ddlSubDomain');
+            clearMessageJQ(ele)
+            const ProjSubDomain = $('#ddlSubDomain').val();
+
+            if (ProjSubDomain === "Select Sub Domain") {
+                addErrorMessageJQ(ele, "Please fill the Sub Domain");
+                console.log(ProjSubDomain);
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
+
+        function ProjTimesheetRepresentativeValidation() {
+            let flag = true;
+            const ele = $('#ddlTimesheetRepresentative');
+            clearMessageJQ(ele)
+            const ProjTimesheetRepresentative = $('#ddlTimesheetRepresentative').val();
+
+            if (ProjTimesheetRepresentative === "Select Timesheet Representative") {
+                addErrorMessageJQ(ele, "Please fill the Timesheet Representative");
+                console.log(ProjTimesheetRepresentative);
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
+
+        function ProjClientInvoiceGroupValidation() {
+            let flag = true;
+            const ele = $('#ddlClientInvoiceGroup');
+            clearMessageJQ(ele)
+            const ProjClientInvoiceGroup = $('#ddlClientInvoiceGroup').val();
+
+            if (ProjClientInvoiceGroup === "Select Client Invoice Group") {
+                addErrorMessageJQ(ele, "Please fill the Client Invoice Group");
+                console.log(ProjClientInvoiceGroup);
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
+
+        function ProjTimesheetTypeValidation() {
+            let flag = true;
+            const ele = $('#ddlTimesheetType');
+            clearMessageJQ(ele)
+            const ProjTimesheetType = $('#ddlTimesheetType').val();
+
+            if (ProjTimesheetType === "Select Timesheet Type") {
+                addErrorMessageJQ(ele, "Please fill the Timesheet Type");
+                console.log(ProjTimesheetType);
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
+
+        function ProjPracticeTypeValidation() {
+            let flag = true;
+            const ele = $('#ddlPracticeType');
+            clearMessageJQ(ele)
+            const ProjPracticeType = $('#ddlPracticeType').val();
+
+            if (ProjPracticeType === "Select Practice Type") {
+                addErrorMessageJQ(ele, "Please fill the Practice Type");
+                console.log(ProjPracticeType);
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
+
+        function ProjRecruiterValidation() {
+            let flag = true;
+            const ele = $('#ddlRecruiter');
+            clearMessageJQ(ele)
+            const ProjRecruiter = $('#ddlRecruiter').val();
+
+            if (ProjRecruiter === "Select Recruiter") {
+                addErrorMessageJQ(ele, "Please fill the Recruiter");
+                console.log(ProjRecruiter);
                 flag = false;
             } else {
                 flag = true;
@@ -299,10 +401,27 @@
             if (!ProjProjectCategoryValidation()) {
                 flag = false;
             }
-            if (!ProjProjectTypeValidation()) {
+            //if (!ProjProjectTypeValidation()) {
+            //    flag = false;
+            //}
+            if (!ProjSubDomainValidation()) {
                 flag = false;
             }
-           
+            if (!ProjTimesheetRepresentativeValidation()) {
+                flag = false;
+            }
+            if (!ProjClientInvoiceGroupValidation()) {
+                flag = false;
+            }
+            if (!ProjTimesheetTypeValidation()) {
+                flag = false;
+            }
+            if (!ProjPracticeTypeValidation()) {
+                flag = false;
+            }
+            if (!ProjRecruiterValidation()) {
+                flag = false;
+            }
             return true;
             
         }

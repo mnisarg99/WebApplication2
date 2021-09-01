@@ -135,6 +135,16 @@ namespace WebApplication2.Controllers.Api
             return Ok(appRefList);
         }
 
-      
+
+        [HttpGet]
+        [Route("ProjectApi/GetProjectsList")]
+        public IHttpActionResult DataTab()
+        {
+            common objRepo = new common();
+            var datatable = objRepo.GetProjectsList();
+            return Ok(datatable);
+        }
+
+
     }
 }

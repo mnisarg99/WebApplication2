@@ -8,14 +8,14 @@
 <table id="prjList" class="table-bordered table-striped">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Status</th>
-
             <th>
                 CustomerName
             </th>
             <th>
                 ProjectName
+            </th>
+            <th>
+                ProjectId
             </th>
             <th>
                 StartDate
@@ -58,13 +58,14 @@
             </th>
             <th>
                 PracticeType
+            </th>
             <th>
                 Recruiter
             </th>
+            
         </tr>
     </thead>
-    <tbody>
-    </tbody>
+    
 
 </table>
 
@@ -74,15 +75,63 @@
 
             $("#prjList").DataTable({
                 ajax: {
-                    url: "/ProjectApi/GetProjectStatus?parentId=1800",
+                    url: "/ProjectApi/GetProjectsList",
                     dataSrc:""
                 },
                 columns: [
                     {
-                        data: "keyId"
+                        data: "customerName"
                     },
                     {
-                        data: "keyName",
+                        data: "projectName"
+                    },
+                    {
+                        data: "projectId"
+                    },
+                    {
+                        data: "startDate"
+                    },  
+                    {
+                        data: "endDate"
+                    },
+                    {
+                        data: "projectStatus"
+                    },
+                    {
+                        data: "locationGroup"
+                    },
+                    {
+                        data: "payrollState"
+                    },
+                    {
+                        data: "salesPerson"
+                    },
+                    {
+                        data: "projectCategory"
+                    },
+                    {
+                        data: "projectType"
+                    },
+                    {
+                        data: "subDomain"
+                    },
+                    {
+                        data: "timesheetRepresentative"
+                    },
+                    {
+                        data: "clientInvoiceGroup"
+                    },
+                    {
+                        data: "timesheetType"
+                    },
+                    {
+                        data: "isVmsTimesheet"
+                    },
+                    {
+                        data: "practiceType"
+                    },
+                    {
+                        data: "recruiter",
                         //render: function (data) { return "This is my name" + data }
                     }]
             });
