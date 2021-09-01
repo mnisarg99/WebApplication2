@@ -45,30 +45,32 @@
         <div class="form-group">
             <label>Location Group</label>
             <select id="ddlLocationGroup" class="form-control">
-            <option value="" disabled selected hidden>Select Location Group</option>
+            <option>Select Location Group</option>
             </select>
         </div>
         <div class="form-group">
             <label>Payroll State</label>
             <select id="ddlPayrollState" class="form-control">
-            <option value="" disabled selected hidden>Select Payroll State</option>
+            <option>Select Payroll State</option>
             </select>
         </div>
         <div class="form-group">
             <label>Sales Person</label>
             <select id="ddlSalesPerson" class="form-control">
-            <option value="" disabled selected hidden>Select Sales Person</option>
+            <option>Select Sales Person</option>
             </select>
         </div>
     </div>
     <div class="form-group">
         <label>Project Category</label>
         <select id="ddlProjectCategory" class="form-control">
+            <option>Select Project Category</option>
         </select>
     </div>
     <div class="form-group">
         <label>Project Type</label>
         <select id="ddlProjectType" class="form-control">
+            @*<option>Select Project Type</option>*@   
         </select>
     </div>
     <div class="form-group">
@@ -153,8 +155,6 @@
             clearMessageJQ(ele)
             const ProjName = $('#ProjectName').val();
 
-
-
             if (ProjName === "" || ProjName.length <= 2 || !isNaN(ProjName.split('')[0])) {
                 addErrorMessageJQ(ele, 'Please fill the Project Name');
                 console.log(ProjName);
@@ -171,11 +171,105 @@
             clearMessageJQ(ele)
             const ProjId = $('#ProjectId').val();
 
-
-
-            if (ProjId === "" || ProjId.length <= 2 || !isNaN(ProjId.split('')[0])) {
+            if (ProjId === "" || ProjId.length <= 2 ) {
                 addErrorMessageJQ(ele, 'Please fill the Project Id');
                 console.log(ProjId);
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
+
+        function ProjStartDateValidation() {
+            let flag = true;
+            const ele = $('#StartDate');
+            clearMessageJQ(ele)
+            const ProjSatrtdate = $('#StartDate').val();
+
+            if (ProjSatrtdate === "") {
+                addErrorMessageJQ(ele, 'Please fill the Start Date');
+                console.log(ProjSatrtdate);
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
+
+        function ProjLocationGroupValidation() {
+            let flag = true;
+            const ele = $('#ddlLocationGroup');
+            clearMessageJQ(ele)
+            const ProjLocationGroup = $('#ddlLocationGroup').val();
+
+            if (ProjLocationGroup === "Select Location Group") {
+                addErrorMessageJQ(ele, "Please fill the Location Group");
+                console.log(ProjLocationGroup);
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
+
+        function ProjPayrollStateValidation() {
+            let flag = true;
+            const ele = $('#ddlPayrollState');
+            clearMessageJQ(ele)
+            const ProjPayrollState = $('#ddlPayrollState').val();
+
+            if (ProjPayrollState === "Select Payroll State") {
+                addErrorMessageJQ(ele, "Please fill the State");
+                console.log(ProjPayrollState);
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
+
+        function ProjSalesPersonValidation() {
+            let flag = true;
+            const ele = $('#ddlSalesPerson');
+            clearMessageJQ(ele)
+            const ProjSalesPerson = $('#ddlSalesPerson').val();
+
+            if (ProjSalesPerson === "Select Sales Person") {
+                addErrorMessageJQ(ele, "Please fill the Sales Person");
+                console.log(ProjSalesPerson);
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
+
+        function ProjProjectCategoryValidation() {
+            let flag = true;
+            const ele = $('#ddlProjectCategory');
+            clearMessageJQ(ele)
+            const ProjProjectCategory = $('#ddlProjectCategory').val();
+
+            if (ProjProjectCategory == "Select Project Category") {
+                addErrorMessageJQ(ele, "Please fill the Category");
+                console.log(ProjProjectCategory);
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
+
+        function ProjProjectTypeValidation() {
+            let flag = true;
+            const ele = $('#ddlProjectType');
+            clearMessageJQ(ele)
+            const ProjProjectType = $('#ddlProjectType').val();
+
+            if (ProjProjectType == "") {
+                addErrorMessageJQ(ele, "Please fill the Type");
+                console.log(ProjProjectType);
                 flag = false;
             } else {
                 flag = true;
@@ -190,6 +284,25 @@
             if (!ProjIdValidation()) {
                 flag = false;
             }
+            if (!ProjStartDateValidation()) {
+                flag = false;
+            }
+            if (!ProjLocationGroupValidation()) {
+                flag = false;
+            }
+            if (!ProjPayrollStateValidation()) {
+                flag = false;
+            }
+            if (!ProjSalesPersonValidation()) {
+                flag = false;
+            }
+            if (!ProjProjectCategoryValidation()) {
+                flag = false;
+            }
+            if (!ProjProjectTypeValidation()) {
+                flag = false;
+            }
+           
             return true;
             
         }

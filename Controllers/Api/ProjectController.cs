@@ -134,5 +134,7 @@ namespace WebApplication2.Controllers.Api
             var appRefList = objRepo.GetAppRefData(parentId);
             return Ok(appRefList);
         }
+
+      
     }
 }

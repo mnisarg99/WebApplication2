@@ -99,15 +99,17 @@ namespace WebApplication2.Controllers
         }
         public ActionResult GetList()
         {
-            ViewBag.Message = "Your contact page.";
+            var result = new Repository.common().GetProjectsList();
 
-            return View();
+            return View(result);
         }
 
         public ActionResult AddProject()
         {
             return View();
         }
+
+
 
     }
 }

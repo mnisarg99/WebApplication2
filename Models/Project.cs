@@ -16,35 +16,35 @@ namespace WebApplication2.Models
         public string ProjectId { get; set; }
         [Required]
         [DataType(DataType.Date)]
-        public string StartDate { get; set; }
+        public DateTime StartDate { get; set; }
         [Required]
         [DataType(DataType.Date)]
-        public string EndDate { get; set; }
+        public DateTime EndDate { get; set; }
         [Required]
-        public int ProjectStatus { get; set; }
+        public string ProjectStatus { get; set; }
         [Required]
-        public int LocationGroup { get; set; }
+        public string LocationGroup { get; set; }
         [Required]
-        public int PayrollState { get; set; }
+        public string PayrollState { get; set; }
         [Required]
-        public int SalesPerson { get; set; }
+        public string SalesPerson { get; set; }
         [Required]
-        public int ProjectCategory { get; set; }
+        public string ProjectCategory { get; set; }
         [Required]
-        public int ProjectType { get; set; }
+        public string ProjectType { get; set; }
         [Required]
-        public int SubDomain { get; set; }
+        public string SubDomain { get; set; }
         [Required]
-        public int TimesheetRepresentative { get; set; }
+        public string TimesheetRepresentative { get; set; }
         [Required]
-        public int ClientInvoiceGroup { get; set; }
+        public string ClientInvoiceGroup { get; set; }
         [Required]
-        public int TimesheetType { get; set; }
+        public string TimesheetType { get; set; }
         [Required]
-        public int IsVmsTimesheet { get; set; }
+        public string IsVmsTimesheet { get; set; }
         [Required]
-        public int PracticeType { get; set; }
+        public string PracticeType { get; set; }
         [Required]
-        public int Recruiter { get; set; }
+        public string Recruiter { get; set; }
     }
 }

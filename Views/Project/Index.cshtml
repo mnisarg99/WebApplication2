@@ -101,7 +101,8 @@
 
     <div class="form-group">
         @Html.LabelFor(m => m.Project.IsVmsTimesheet)
-        @Html.TextBoxFor(m => m.Project.IsVmsTimesheet)
+        @Html.RadioButtonFor(m => m.Project.IsVmsTimesheet, "Yes") Yes
+        @Html.RadioButtonFor(m => m.Project.IsVmsTimesheet, "No") No
         @Html.ValidationMessageFor(m => m.Project.ClientInvoiceGroup, "", new { @class = "text-danger" })
     </div>
 
