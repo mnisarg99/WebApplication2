@@ -20,30 +20,30 @@ namespace WebApplication2.Repository
 
         }
 
-        public bool SaveData(ProjectAddEditViewModel model)
+        public bool SaveData(Project proj)
         {
             Connection();
             SqlCommand com = new SqlCommand("ProjectDetails_Nisarg_Training", con);
             com.CommandType = CommandType.StoredProcedure;
 
-            com.Parameters.AddWithValue("@CustomerName", model.Project.CustomerName);
-            com.Parameters.AddWithValue("@ProjectName", model.Project.ProjectName);
-            com.Parameters.AddWithValue("@ProjectId", model.Project.ProjectId);
-            com.Parameters.AddWithValue("@StartDate", model.Project.StartDate);
-            com.Parameters.AddWithValue("@EndDate", model.Project.EndDate);
-            com.Parameters.AddWithValue("@ProjectStatus", model.Project.ProjectStatus);
-            com.Parameters.AddWithValue("@LocationGroup", model.Project.LocationGroup);
-            com.Parameters.AddWithValue("@PayrollState", model.Project.PayrollState);
-            com.Parameters.AddWithValue("@SalesPerson", model.Project.SalesPerson);
-            com.Parameters.AddWithValue("@ProjectCategory", model.Project.ProjectCategory);
-            com.Parameters.AddWithValue("@ProjectType", model.Project.ProjectType);
-            com.Parameters.AddWithValue("@SubDomain", model.Project.SubDomain);
-            com.Parameters.AddWithValue("@TimesheetRepresentative", model.Project.TimesheetRepresentative);
-            com.Parameters.AddWithValue("@ClientInvoiceGroup", model.Project.ClientInvoiceGroup);
-            com.Parameters.AddWithValue("@TimesheetType", model.Project.TimesheetType);
-            com.Parameters.AddWithValue("@IsVmsTimesheet", model.Project.IsVmsTimesheet);
-            com.Parameters.AddWithValue("@PracticeType", model.Project.PracticeType);
-            com.Parameters.AddWithValue("@Recruiter", model.Project.Recruiter);
+            com.Parameters.AddWithValue("@CustomerName", proj.CustomerName);
+            com.Parameters.AddWithValue("@ProjectName", proj.ProjectName);
+            com.Parameters.AddWithValue("@ProjectId", proj.ProjectId);
+            com.Parameters.AddWithValue("@StartDate", proj.StartDate);
+            com.Parameters.AddWithValue("@EndDate", proj.EndDate);
+            com.Parameters.AddWithValue("@ProjectStatus", proj.ProjectStatus);
+            com.Parameters.AddWithValue("@LocationGroup", proj.LocationGroup);
+            com.Parameters.AddWithValue("@PayrollState", proj.PayrollState);
+            com.Parameters.AddWithValue("@SalesPerson", proj.SalesPerson);
+            com.Parameters.AddWithValue("@ProjectCategory", proj.ProjectCategory);
+            com.Parameters.AddWithValue("@ProjectType", proj.ProjectType);
+            com.Parameters.AddWithValue("@SubDomain", proj.SubDomain);
+            com.Parameters.AddWithValue("@TimesheetRepresentative", proj.TimesheetRepresentative);
+            com.Parameters.AddWithValue("@ClientInvoiceGroup", proj.ClientInvoiceGroup);
+            com.Parameters.AddWithValue("@TimesheetType", proj.TimesheetType);
+            com.Parameters.AddWithValue("@IsVmsTimesheet", proj.IsVmsTimesheet);
+            com.Parameters.AddWithValue("@PracticeType", proj.PracticeType);
+            com.Parameters.AddWithValue("@Recruiter", proj.Recruiter);
             con.Open();
             int i = com.ExecuteNonQuery();
             con.Close();

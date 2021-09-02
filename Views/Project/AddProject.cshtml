@@ -443,7 +443,7 @@
                 TimesheetRepresentative: "",
                 ClientInvoiceGroup: "",
                 TimesheetType: "",
-                IsprojectsTimesheet: "",
+                IsVmsTimesheet: "",
                 PracticeType: "",
                 Recruiter: "",
             };
@@ -453,24 +453,24 @@
             project.ProjectId = $("#ProjectId").val();
             project.startdate = $("#StartDate").val();
             project.enddate = $("#EndDate").val();
-            project.projectstatus = $("#ddlProjectStatus :selected").text();
-            project.locationgroup = $("#ddlLocationGroup :selected").text();
-            project.PayrollState = $("#ddlPayrollState :selected").text();
-            project.SalesPerson = $("#ddlSalesPerson :selected").text();
-            project.ProjectCategory = $("#ddlProjectCategory :selected").text();
-            project.ProjectType = $("#ddlProjectType :selected").text();
-            project.SubDomain = $("#ddlSubDomain :selected").text();
-            project.TimesheetRepresentative = $("#ddlTimesheetRepresentative :selected").text();
-            project.ClientInvoiceGroup = $("#ddlClientInvoiceGroup :selected").text();
-            project.TimesheetType = $("#ddlTimesheetType :selected").text();
-            project.IsprojectsTimesheet = $("#ddlIsprojectsYes :selected").text();
-            project.PracticeType = $("#ddlPracticeType :selected").text();
-            project.Recruiter = $("#ddlRecruiter :selected").text();
+            project.projectstatus = $("#ddlProjectStatus").val();
+            project.locationgroup = $("#ddlLocationGroup").val();
+            project.PayrollState = $("#ddlPayrollState").val();
+            project.SalesPerson = $("#ddlSalesPerson").val();
+            project.ProjectCategory = $("#ddlProjectCategory").val();
+            project.ProjectType = $("#ddlProjectType").val();
+            project.SubDomain = $("#ddlSubDomain").val();
+            project.TimesheetRepresentative = $("#ddlTimesheetRepresentative").val();
+            project.ClientInvoiceGroup = $("#ddlClientInvoiceGroup").val();
+            project.TimesheetType = $("#ddlTimesheetType").val();
+            project.IsVmsTimesheet = $("input[name='IsVmsTimeSheet']:checked").val();
+            project.PracticeType = $("#ddlPracticeType").val();
+            project.Recruiter = $("#ddlRecruiter").val();
 
             console.log(project);
             $.ajax({
                 method: "POST",
-                url: "/Project/AddProject",
+                url: "/ProjectApi/AddProject",
                 dataType: "json",
                 data: project,
                 success: function () { },

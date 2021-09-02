@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -15,7 +16,10 @@ namespace WebApplication2.Controllers.Api
         [Route("ProjectApi/AddProject")]
         public IHttpActionResult AddProject(Project Pr)
         {
-           return Ok();
+            DataTab objRepo = new DataTab();
+            var dataTable = objRepo.SaveData(Pr);
+            return Ok(dataTable);
+            
         }
 
         [HttpGet]
