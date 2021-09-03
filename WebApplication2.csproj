@@ -359,6 +359,7 @@
     <Content Include="Views\Project\GetList.cshtml" />
     <Content Include="Views\Project\AddProject.cshtml" />
     <Content Include="Views\DataTable\DataTable.cshtml" />
+    <Content Include="Views\Project\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
