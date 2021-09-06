@@ -1,9 +1,26 @@
 ﻿
-@{ 
-    ViewBag.Title = "DataTable"; 
- }
+@{ ViewBag.Title = "DataTable"; }
 
 <h2>Projects List</h2>
+<div class="form-group col-md-3">
+    <label>Project Type</label>
+    <select id="ddlProjectType" class="form-control">
+    </select>
+</div>
+
+<div class="form-group col-md-3">
+    <label>Practice Type</label>
+    <select id="ddlPracticeType" class="form-control">
+    </select>
+</div>
+
+<div class="form-group col-md-3">
+    <label>Search</label>
+    <input type="text" id="CustomerName" class="form-control">
+    <input type="button" class="btn-primary" value="Submit" id="btnSave" />
+</div>
+
+
 
 <table id="prjList" class="table-bordered table-striped">
     <thead>
@@ -62,21 +79,59 @@
             <th>
                 Recruiter
             </th>
-            
+            <th></th>
+
         </tr>
     </thead>
-    
+
 
 </table>
 
 @section scripts{
     <script>
         $(document).ready(function () {
+            BindProjectType();
+            BindProjectPracticeTypeList();
+        });
+
+        function BindProjectType() {
+            $.ajax({
+                method: "GET",
+                url: "/ProjectApi/GetProjectType?parentId=4650",
+                success: function (data) {
+                    console.log(data);
+
+                    $(data).each(function () {
+                        $("#ddlProjectType").append($("<option></option>").val(this.keyId).html(this.keyName));
+                    });
+                },
+                error: function () { }
+            });
+        }
+
+        function BindProjectPracticeTypeList() {
+            $.ajax({
+                method: "GET",
+                url: "/ProjectApi/GetProjectPracticeType?parentId=15760",
+                success: function (data) {
+                    console.log(data);
+
+                    $(data).each(function () {
+                        $("#ddlPracticeType").append($("<option></option>").val(this.keyId).html(this.keyName));
+                    });
+                },
+                error: function () { }
+            });
+        }
+
+
+
+        $(document).ready(function () {
 
             $("#prjList").DataTable({
                 ajax: {
                     url: "/ProjectApi/GetProjectsList",
-                    dataSrc:""
+                    dataSrc: ""
                 },
                 columns: [
                     {
@@ -90,7 +145,7 @@
                     },
                     {
                         data: "startDate"
-                    },  
+                    },
                     {
                         data: "endDate"
                     },
@@ -133,10 +188,26 @@
                     {
                         data: "recruiter",
                         //render: function (data) { return "This is my name" + data }
-                    }]
-            });
+                    },
+                    {
+                        //edit button creation
+                        render: function (data, type, row) {
+                            return createButton('edit', row.id);
+                        }
+                    }],
 
-       });
+                //"searching": false,
+                //"paging": true,
+                //"info": true,
+                //"language": {
+                //    "emptyTable": "No data available"
+                //},
+            });
+            function createButton(buttonType, rowID) {
+                var buttonText = buttonType == "edit" ? "Edit" : "Delete";
+                return '<button class="' + buttonType + '" type="button">' + buttonText + '</button>';
+            }
+        });
     </script>
 }
 
