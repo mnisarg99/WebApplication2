@@ -152,6 +152,8 @@
             $("#btnSave").on("click", function () {
                 if (IsValidate()) {
                     SaveData();
+
+                    alert("Data Updated")
                 }
 
             });
@@ -212,6 +214,7 @@
             }
             return flag;
         }
+
 
         function ProjLocationGroupValidation() {
             let flag = true;
@@ -480,7 +483,7 @@
             console.log(project);
             $.ajax({
                 method: "POST",
-                url: "/ProjectApi/AddProject",
+                url: "/ProjectApi/UpdateProject",
                 dataType: "json",
                 data: project,
                 success: function () { },
@@ -705,28 +708,32 @@
 
             $.ajax({
                 method: "Get",
-                url: "/ProjectApi/GetProjectDataList?Id=Nis_Pep",
+                url: "/ProjectApi/GetProjectDataList?Id=fshsrj",
                 success: function (data) {
-                    data = JSON.parse(data.project);
+                    
                     console.log(data);
-                    $("$CustomerName").val(data[0].CustomerName);
-                    $("$ProjectName").val(data[0].ProjectName);
-                    $("$ProjectId").val(data[0].ProjectId);
-                    $("$StartDate").val(data[0].startdate);
-                    $("$EndDate").val(data[0].enddate);
-                    $("$ddlProjectStatus").val(data[0].projectstatus);
-                    $("$ddlLocationGroup").val(data[0].locationgroup);
-                    $("$ddlPayrollState").val(data[0].PayrollState);
-                    $("$ddlSalesPerson").val(data[0].SalesPerson);
-                    $("$ddlProjectCategory").val(data[0].ProjectCategory);
-                    $("$ddlProjectType").val(data[0].ProjectType);
-                    $("$ddlSubDomain").val(data[0].SubDomain);
-                    $("$ddlTimesheetRepresentative").val(data[0].TimesheetRepresentative);
-                    $("$ddlClientInvoiceGroup").val(data[0].ClientInvoiceGroup);
-                    $("$ddlTimesheetType").val(data[0].TimesheetType);
-                    $("input[name='IsVmsTimeSheet']:checked").val(data[0].IsVmsTimesheet);
-                    $("$ddlPracticeType").val(data[0].PracticeType);
-                    $("$ddlRecruiter").val(data[0].Recruiter);
+                    console.log(data[0]);
+                    console.log(data[0].customerName);
+                    console.log(data[0].startDate);
+                    console.log(data[0].subDomain);
+                    $("#CustomerName").val(data[0].customerName);
+                    $("#ProjectName").val(data[0].projectName);
+                    $("#ProjectId").val(data[0].projectId);
+                    $("#StartDate").val(data[0].startDate);
+                    $("#EndDate").val(data[0].endDate);
+                    $("#ddlProjectStatus").val(data[0].projectStatus);
+                    $("#ddlLocationGroup").val(data[0].locationGroup);
+                    $("#ddlPayrollState").val(data[0].payrollState);
+                    $("#ddlSalesPerson").val(data[0].salesPerson);
+                    $("#ddlProjectCategory").val(data[0].projectCategory);
+                    $("#ddlProjectType").val(data[0].projectType);
+                    $("#ddlSubDomain").val(data[0].subDomain);
+                    $("#ddlTimesheetRepresentative").val(data[0].timesheetRepresentative);
+                    $("#ddlClientInvoiceGroup").val(data[0].clientInvoiceGroup);
+                    $("#ddlTimesheetType").val(data[0].timesheetType);
+                    $("input[name='IsVmsTimeSheet']:checked").val(data[0].isVmsTimesheet);
+                    $("#ddlPracticeType").val(data[0].practiceType);
+                    $("#ddlRecruiter").val(data[0].recruiter);
                    
                 },
                 error: function () { }

@@ -59,7 +59,7 @@ namespace WebApplication2.Repository
             }
         }
 
-        public string GetProjectData(string ProjectId) 
+        public List<Project> GetProjectData(string ProjectId) 
         {
             DataSet ds = new DataSet();
             List<Project> SelectListNew = new List<Project>();
@@ -80,8 +80,8 @@ namespace WebApplication2.Repository
                     obj.CustomerName = Convert.ToString(ds.Tables[0].Rows[i]["CustomerName"]);
                     obj.ProjectName = Convert.ToString(ds.Tables[0].Rows[i]["ProjectName"]);
                     obj.ProjectId = Convert.ToString(ds.Tables[0].Rows[i]["ProjectId"]);
-                    obj.StartDate = Convert.ToDateTime(ds.Tables[0].Rows[i]["StartDate"]);
-                    obj.EndDate = Convert.ToDateTime(ds.Tables[0].Rows[i]["EndDate"]);
+                    obj.StartDate = Convert.ToString(ds.Tables[0].Rows[i]["StartDate"]);
+                    obj.EndDate = Convert.ToString(ds.Tables[0].Rows[i]["EndDate"]);
                     obj.ProjectStatus = Convert.ToString(ds.Tables[0].Rows[i]["ProjectStatus"]);
                     obj.LocationGroup = Convert.ToString(ds.Tables[0].Rows[i]["LocationGroup"]);
                     obj.PayrollState = Convert.ToString(ds.Tables[0].Rows[i]["PayRollState"]);
@@ -99,7 +99,44 @@ namespace WebApplication2.Repository
                 }
             }
 
-            return "SelectListNew";
+            return SelectListNew;
+        }
+
+        public bool UpdateData(Project proj)
+        {
+            Connection();
+            SqlCommand com = new SqlCommand("Update_Project_Nisarg_training", con);
+            com.CommandType = CommandType.StoredProcedure;
+
+            com.Parameters.AddWithValue("@CustomerName", proj.CustomerName);
+            com.Parameters.AddWithValue("@ProjectName", proj.ProjectName);
+            com.Parameters.AddWithValue("@ProjectId", proj.ProjectId);
+            com.Parameters.AddWithValue("@StartDate", proj.StartDate);
+            com.Parameters.AddWithValue("@EndDate", proj.EndDate);
+            com.Parameters.AddWithValue("@ProjectStatus", proj.ProjectStatus);
+            com.Parameters.AddWithValue("@LocationGroup", proj.LocationGroup);
+            com.Parameters.AddWithValue("@PayrollState", proj.PayrollState);
+            com.Parameters.AddWithValue("@SalesPerson", proj.SalesPerson);
+            com.Parameters.AddWithValue("@ProjectCategory", proj.ProjectCategory);
+            com.Parameters.AddWithValue("@ProjectType", proj.ProjectType);
+            com.Parameters.AddWithValue("@SubDomain", proj.SubDomain);
+            com.Parameters.AddWithValue("@TimesheetRepresentative", proj.TimesheetRepresentative);
+            com.Parameters.AddWithValue("@ClientInvoiceGroup", proj.ClientInvoiceGroup);
+            com.Parameters.AddWithValue("@TimesheetType", proj.TimesheetType);
+            com.Parameters.AddWithValue("@IsVmsTimesheet", proj.IsVmsTimesheet);
+            com.Parameters.AddWithValue("@PracticeType", proj.PracticeType);
+            com.Parameters.AddWithValue("@Recruiter", proj.Recruiter);
+            con.Open();
+            int i = com.ExecuteNonQuery();
+            con.Close();
+            if (i >= 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

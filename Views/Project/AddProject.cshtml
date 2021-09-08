@@ -142,10 +142,38 @@
             $("#btnSave").on("click", function () {
                 if (IsValidate()) {
                     SaveData();
+
+                    alert("Data Submitted Successfully")
                 }
 
             });
         });
+
+
+        $(document).on('input', 'input[type=text]', (event) => {
+            const $ctrl = event.target;
+            const ctrlId = $($ctrl).attr('id');
+            if (ctrlId === 'ProjectName') {
+                ProjNameValidation();
+            }
+        });
+       
+        $(document).on('change', (event) => {
+            const $ctrl = event.target;
+            const ctrlId = $($ctrl).attr('id');
+            if (ctrlId === 'ddlLocationGroup') {
+                ProjLocationGroupValidation();
+            }
+        });
+        $(document).on('input', 'input[type=date]', (event) => {
+            const $ctrl = event.target;
+            const ctrlId = $($ctrl).attr('id');
+            if (ctrlId === 'StartDate') {
+                ProjStartDateValidation();
+            }
+        });
+
+
         function clearMessageJQ(ele) {
             $(ele).siblings('span.error').remove();
         }
@@ -267,21 +295,7 @@
             return flag;
         }
 
-        //function ProjProjectTypeValidation() {
-        //    let flag = true;
-        //    const ele = $('#ddlProjectType');
-        //    clearMessageJQ(ele)
-        //    const ProjProjectType = $('#ddlProjectType').val();
-
-        //    if (ProjProjectType === "Select Project Type") {
-        //        addErrorMessageJQ(ele, "Please fill the Type");
-        //        console.log(ProjProjectType);
-        //        flag = false;
-        //    } else {
-        //        flag = true;
-        //    }
-        //    return flag;
-        //}
+       
 
         function ProjSubDomainValidation() {
             let flag = true;
@@ -401,9 +415,7 @@
             if (!ProjProjectCategoryValidation()) {
                 flag = false;
             }
-            //if (!ProjProjectTypeValidation()) {
-            //    flag = false;
-            //}
+           
             if (!ProjSubDomainValidation()) {
                 flag = false;
             }
@@ -422,7 +434,7 @@
             if (!ProjRecruiterValidation()) {
                 flag = false;
             }
-            return true;
+            return flag;
             
         }
         function SaveData() {

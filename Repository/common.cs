@@ -209,8 +209,8 @@ namespace WebApplication2.Repository
                     obj.CustomerName = Convert.ToString(ds.Tables[0].Rows[i]["CustomerName"]);
                     obj.ProjectName = Convert.ToString(ds.Tables[0].Rows[i]["ProjectName"]);
                     obj.ProjectId = Convert.ToString(ds.Tables[0].Rows[i]["ProjectId"]);
-                    obj.StartDate = Convert.ToDateTime(ds.Tables[0].Rows[i]["StartDate"]);
-                    obj.EndDate = Convert.ToDateTime(ds.Tables[0].Rows[i]["EndDate"]);
+                    obj.StartDate = Convert.ToString(ds.Tables[0].Rows[i]["StartDate"]);
+                    obj.EndDate = Convert.ToString(ds.Tables[0].Rows[i]["EndDate"]);
                     obj.ProjectStatus = Convert.ToString(ds.Tables[0].Rows[i]["ProjectStatus"]);
                     obj.LocationGroup = Convert.ToString(ds.Tables[0].Rows[i]["LocationGroup"]);
                     obj.PayrollState = Convert.ToString(ds.Tables[0].Rows[i]["PayRollState"]);

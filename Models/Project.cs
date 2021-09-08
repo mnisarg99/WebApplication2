@@ -16,10 +16,12 @@ namespace WebApplication2.Models
         public string ProjectId { get; set; }
         [Required]
         [DataType(DataType.Date)]
-        public DateTime StartDate { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yy}")]
+        public string StartDate { get; set; }
         [Required]
         [DataType(DataType.Date)]
-        public DateTime EndDate { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yy}")]
+        public string EndDate { get; set; }
         [Required]
         public string ProjectStatus { get; set; }
         [Required]

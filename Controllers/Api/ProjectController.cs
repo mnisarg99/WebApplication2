@@ -22,6 +22,15 @@ namespace WebApplication2.Controllers.Api
             
         }
 
+        [HttpPost]
+        [Route("ProjectApi/UpdateProject")]
+        public IHttpActionResult UpdateProject(Project Pr)
+        {
+            DataTab objRepo = new DataTab();
+            var dataTable = objRepo.UpdateData(Pr);
+            return Ok(dataTable);
+        }
+
         [HttpGet]
         [Route("ProjectApi/GetProjectStatus")]
         public IHttpActionResult ProjectStatus(int parentId)
@@ -108,7 +117,7 @@ namespace WebApplication2.Controllers.Api
         public IHttpActionResult ProjectSubDomain()
         {
             common objRepo = new common();
-            var dom = objRepo.GetTimesheet();
+            var dom = objRepo.GetDomain();
             return Ok(dom);
         }
 
