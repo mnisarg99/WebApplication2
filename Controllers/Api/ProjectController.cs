@@ -13,7 +13,7 @@ namespace WebApplication2.Controllers.Api
     public class ProjectController : ApiController
     {
         [HttpPost]
-        [Route("ProjectApi/AddProject")]
+        [Route("ProjectApi/AddProject1")]
         public IHttpActionResult AddProject(Project Pr)
         {
             DataTab objRepo = new DataTab();

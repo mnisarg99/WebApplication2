@@ -434,7 +434,7 @@
             if (!ProjRecruiterValidation()) {
                 flag = false;
             }
-            return flag;
+            return flag = true;
             
         }
         function SaveData() {
@@ -482,7 +482,7 @@
             console.log(project);
             $.ajax({
                 method: "POST",
-                url: "/ProjectApi/AddProject",
+                url: "/ProjectApi/AddProject1",
                 dataType: "json",
                 data: project,
                 success: function () { },
@@ -506,6 +506,7 @@
                 error: function () { }
             });
         }
+
 
         function BindProjectCategoryList() {
             $.ajax({
