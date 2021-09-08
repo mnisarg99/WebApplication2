@@ -59,13 +59,14 @@ namespace WebApplication2.Repository
             }
         }
 
-        public string GetProjectData() 
+        public string GetProjectData(string ProjectId) 
         {
             DataSet ds = new DataSet();
             List<Project> SelectListNew = new List<Project>();
             Connection();
-            SqlCommand cmd = new SqlCommand("ProjectList_Nisarg_Training", con);
+            SqlCommand cmd = new SqlCommand("ProjectEdit_Nisarg_Training", con);
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@ProjectId", ProjectId);
             con.Open();
             using (SqlDataAdapter da = new SqlDataAdapter(cmd))
             {
@@ -98,7 +99,7 @@ namespace WebApplication2.Repository
                 }
             }
 
-            return "Done";
+            return "SelectListNew";
         }
     }
 }

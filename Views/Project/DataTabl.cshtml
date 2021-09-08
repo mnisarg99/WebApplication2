@@ -22,7 +22,7 @@
 
 
 
-<table id="prjList" class="table-bordered table-striped">
+<table id="prjList" class="table-bordered table-striped" data-order = '[[3 , "desc"]]'>  @*to add it in start date formate*@
     <thead>
         <tr>
             <th>
@@ -88,8 +88,7 @@
 </table>
 
 @section scripts{
-    <script>
-        $(document).ready(function () {
+    <script>$(document).ready(function () {
             BindProjectType();
             BindProjectPracticeTypeList();
         });
@@ -207,8 +206,7 @@
                 var buttonText = buttonType == "edit" ? "Edit" : "Delete";
                 return '<button class="' + buttonType + '" type="button">' + buttonText + '</button>';
             }
-        });
-    </script>
+        });</script>
 }
 
 

@@ -66,7 +66,7 @@ namespace WebApplication2.Controllers
             Connection();
             SqlCommand com = new SqlCommand("ProjectDetails_Nisarg_Training", con);
             com.CommandType = CommandType.StoredProcedure;
-            
+
             com.Parameters.AddWithValue("@CustomerName", model.Project.CustomerName);
             com.Parameters.AddWithValue("@ProjectName", model.Project.ProjectName);
             com.Parameters.AddWithValue("@ProjectId", model.Project.ProjectId);
@@ -108,11 +108,18 @@ namespace WebApplication2.Controllers
         {
             return View();
         }
-        public ActionResult Edit()
+        public ActionResult Edit(string Id)
+        {
+            return View();
+        }
+
+        public ActionResult DataTabl()
         {
             return View();
         }
 
 
+       
+       
     }
 }

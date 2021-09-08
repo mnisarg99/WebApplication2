@@ -120,24 +120,34 @@
 @section scripts{
 
     <script>
+
+
         $(document).ready(function () {
             const ProjectType = 4650,
                 ProjectStatus = 1800;
+            $.when(
+            
+            
+            bindAppRefDataList(ddlProjectType, ProjectType),
+            bindAppRefDataList(ddlProjectStatus, ProjectStatus),
+            //BindProjectStatusList(),
+                BindProjectCategoryList(),
+            //BindProjectList(),
+            BindProjectInvoiceList(),
+            BindProjectTimesheetTypeList(),
+            BindProjectPracticeTypeList(),
+            BindProjectRecruiterList(),
+            BindProjectLocationGroupList(),
+            BindProjectRepresentativeList(),
+            BindProjectSubDomainList(),
+            BindProjectSalesPersonList(),
+            BindProjectPayrollStateList(),
+            ).done(function () {
+               
 
-            bindAppRefDataList(ddlProjectType, ProjectType);
-            bindAppRefDataList(ddlProjectStatus, ProjectStatus);
-            //BindProjectStatusList();
-            BindProjectCategoryList();
-            //BindProjectList();
-            BindProjectInvoiceList();
-            BindProjectTimesheetTypeList();
-            BindProjectPracticeTypeList();
-            BindProjectRecruiterList();
-            BindProjectLocationGroupList();
-            BindProjectRepresentativeList();
-            BindProjectSubDomainList();
-            BindProjectSalesPersonList();
-            BindProjectPayrollStateList();
+                GetProjectData()
+               
+            })
 
             $("#btnSave").on("click", function () {
                 if (IsValidate()) {
@@ -163,7 +173,7 @@
 
             if (ProjName === "" || ProjName.length <= 2 || !isNaN(ProjName.split('')[0])) {
                 addErrorMessageJQ(ele, 'Please fill the Project Name');
-                console.log(ProjName);
+                //console.log(ProjName);
                 flag = false;
             } else {
                 flag = true;
@@ -179,7 +189,7 @@
 
             if (ProjId === "" || ProjId.length <= 2 ) {
                 addErrorMessageJQ(ele, 'Please fill the Project Id');
-                console.log(ProjId);
+                //console.log(ProjId);
                 flag = false;
             } else {
                 flag = true;
@@ -195,7 +205,7 @@
 
             if (ProjSatrtdate === "") {
                 addErrorMessageJQ(ele, 'Please fill the Start Date');
-                console.log(ProjSatrtdate);
+                //console.log(ProjSatrtdate);
                 flag = false;
             } else {
                 flag = true;
@@ -211,7 +221,7 @@
 
             if (ProjLocationGroup === "Select Location Group") {
                 addErrorMessageJQ(ele, "Please fill the Location Group");
-                console.log(ProjLocationGroup);
+                //console.log(ProjLocationGroup);
                 flag = false;
             } else {
                 flag = true;
@@ -227,7 +237,7 @@
 
             if (ProjPayrollState === "Select Payroll State") {
                 addErrorMessageJQ(ele, "Please fill the State");
-                console.log(ProjPayrollState);
+                //console.log(ProjPayrollState);
                 flag = false;
             } else {
                 flag = true;
@@ -243,7 +253,7 @@
 
             if (ProjSalesPerson === "Select Sales Person") {
                 addErrorMessageJQ(ele, "Please fill the Sales Person");
-                console.log(ProjSalesPerson);
+                //console.log(ProjSalesPerson);
                 flag = false;
             } else {
                 flag = true;
@@ -259,7 +269,7 @@
 
             if (ProjProjectCategory === "Select Project Category") {
                 addErrorMessageJQ(ele, "Please fill the Category");
-                console.log(ProjProjectCategory);
+                //console.log(ProjProjectCategory);
                 flag = false;
             } else {
                 flag = true;
@@ -267,21 +277,21 @@
             return flag;
         }
 
-        //function ProjProjectTypeValidation() {
-        //    let flag = true;
-        //    const ele = $('#ddlProjectType');
-        //    clearMessageJQ(ele)
-        //    const ProjProjectType = $('#ddlProjectType').val();
+        function ProjProjectTypeValidation() {
+            let flag = true;
+            const ele = $('#ddlProjectType');
+            clearMessageJQ(ele)
+            const ProjProjectType = $('#ddlProjectType').val();
 
-        //    if (ProjProjectType === "Select Project Type") {
-        //        addErrorMessageJQ(ele, "Please fill the Type");
-        //        console.log(ProjProjectType);
-        //        flag = false;
-        //    } else {
-        //        flag = true;
-        //    }
-        //    return flag;
-        //}
+            if (ProjProjectType === "Select Project Type") {
+                addErrorMessageJQ(ele, "Please fill the Type");
+                //console.log(ProjProjectType);
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
 
         function ProjSubDomainValidation() {
             let flag = true;
@@ -291,7 +301,7 @@
 
             if (ProjSubDomain === "Select Sub Domain") {
                 addErrorMessageJQ(ele, "Please fill the Sub Domain");
-                console.log(ProjSubDomain);
+               // console.log(ProjSubDomain);
                 flag = false;
             } else {
                 flag = true;
@@ -307,7 +317,7 @@
 
             if (ProjTimesheetRepresentative === "Select Timesheet Representative") {
                 addErrorMessageJQ(ele, "Please fill the Timesheet Representative");
-                console.log(ProjTimesheetRepresentative);
+                //console.log(ProjTimesheetRepresentative);
                 flag = false;
             } else {
                 flag = true;
@@ -323,7 +333,7 @@
 
             if (ProjClientInvoiceGroup === "Select Client Invoice Group") {
                 addErrorMessageJQ(ele, "Please fill the Client Invoice Group");
-                console.log(ProjClientInvoiceGroup);
+                //console.log(ProjClientInvoiceGroup);
                 flag = false;
             } else {
                 flag = true;
@@ -339,7 +349,7 @@
 
             if (ProjTimesheetType === "Select Timesheet Type") {
                 addErrorMessageJQ(ele, "Please fill the Timesheet Type");
-                console.log(ProjTimesheetType);
+                //console.log(ProjTimesheetType);
                 flag = false;
             } else {
                 flag = true;
@@ -355,7 +365,7 @@
 
             if (ProjPracticeType === "Select Practice Type") {
                 addErrorMessageJQ(ele, "Please fill the Practice Type");
-                console.log(ProjPracticeType);
+                //console.log(ProjPracticeType);
                 flag = false;
             } else {
                 flag = true;
@@ -371,7 +381,7 @@
 
             if (ProjRecruiter === "Select Recruiter") {
                 addErrorMessageJQ(ele, "Please fill the Recruiter");
-                console.log(ProjRecruiter);
+                //console.log(ProjRecruiter);
                 flag = false;
             } else {
                 flag = true;
@@ -401,9 +411,9 @@
             if (!ProjProjectCategoryValidation()) {
                 flag = false;
             }
-            //if (!ProjProjectTypeValidation()) {
-            //    flag = false;
-            //}
+            if (!ProjProjectTypeValidation()) {
+                flag = false;
+            }
             if (!ProjSubDomainValidation()) {
                 flag = false;
             }
@@ -478,8 +488,8 @@
             });
 
         }
-
-        function BindProjectStatusList() {
+        
+        function bindAppRefDataList() {
             $.ajax({
                 method: "GET",
                 url: "/ProjectApi/GetProjectStatus?parentId=1800",
@@ -510,8 +520,9 @@
                 error: function () { }
             });
         }
+        
 
-        function BindProjectType() {
+        function bindAppRefDataList() {
             $.ajax({
                 method: "GET",
                 url: "/ProjectApi/GetProjectType?parentId=4650",
@@ -531,7 +542,7 @@
                 method: "GET",
                 url: "/ProjectApi/GetProjectInvoice?parentId=10300",
                 success: function (data) {
-                    console.log(data);
+                    //console.log(data);
 
                     $(data).each(function () {
                         $("#ddlClientInvoiceGroup").append($("<option></option>").val(this.keyId).html(this.keyName));
@@ -546,7 +557,7 @@
                 method: "GET",
                 url: "/ProjectApi/GetProjectTimesheetType?parentId=13120",
                 success: function (data) {
-                    console.log(data);
+                    //console.log(data);
 
                     $(data).each(function () {
                         $("#ddlTimesheetType").append($("<option></option>").val(this.keyId).html(this.keyName));
@@ -561,7 +572,7 @@
                 method: "GET",
                 url: "/ProjectApi/GetProjectPracticeType?parentId=15760",
                 success: function (data) {
-                    console.log(data);
+                    //console.log(data);
 
                     $(data).each(function () {
                         $("#ddlPracticeType").append($("<option></option>").val(this.keyId).html(this.keyName));
@@ -576,7 +587,7 @@
                 method: "GET",
                 url: "/ProjectApi/GetProjectRecruiter",
                 success: function (data) {
-                    console.log(data);
+                    //console.log(data);
 
                     $(data).each(function () {
                         $("#ddlRecruiter").append($("<option></option>").val(this.id).html(this.name));
@@ -591,7 +602,7 @@
                 method: "GET",
                 url: "/ProjectApi/GetProjectLocationGroup?",
                 success: function (data) {
-                    console.log(data);
+                    //console.log(data);
 
                     $(data).each(function () {
                         $("#ddlLocationGroup").append($("<option></option>").val(this.id).html(this.name));
@@ -606,7 +617,7 @@
                 method: "GET",
                 url: "/ProjectApi/GetProjectTimesheetRepresentative?",
                 success: function (data) {
-                    console.log(data);
+                    //console.log(data);
 
                     $(data).each(function () {
                         $("#ddlTimesheetRepresentative").append($("<option></option>").val(this.id).html(this.name));
@@ -621,7 +632,7 @@
                 method: "GET",
                 url: "/ProjectApi/GetProjectSubDomain?",
                 success: function (data) {
-                    console.log(data);
+                    //console.log(data);
 
                     $(data).each(function () {
                         $("#ddlSubDomain").append($("<option></option>").val(this.id).html(this.name));
@@ -636,7 +647,7 @@
                 method: "GET",
                 url: "/ProjectApi/GetProjectSalesPerson?",
                 success: function (data) {
-                    console.log(data);
+                    //console.log(data);
 
                     $(data).each(function () {
                         $("#ddlSalesPerson").append($("<option></option>").val(this.id).html(this.name));
@@ -651,7 +662,7 @@
                 method: "GET",
                 url: "/ProjectApi/GetProjectPayrollState?countryId=1",
                 success: function (data) {
-                    console.log(data);
+                    //console.log(data);
 
                     $(data).each(function () {
                         $("#ddlPayrollState").append($("<option></option>").val(this.id).html(this.name));
@@ -676,6 +687,51 @@
                 },
                 error: function () { }
             });
+        }
+
+        function GetProjectData() {
+            //$("#ddlProjectType").val("4651");
+            //$("#ddlProjectStatus").val("1802");
+            //$("#ddlProjectCategory").val("19493");
+            //$("#ddlClientInvoiceGroup").val("10302");
+            //$("#ddlTimesheetType").val("13121");
+            //$("#ddlPracticeType").val("15761");
+            //$("#ddlRecruiter").val("10225");
+            //$("#ddlLocationGroup").val("1141");
+            //$("#ddlTimesheetRepresentative").val("4641");
+            //$("#ddlSubDomain").val("113");
+            //$("#ddlSalesPerson").val("15921");
+            //$("#ddlPayrollState").val("4");
+
+            $.ajax({
+                method: "Get",
+                url: "/ProjectApi/GetProjectDataList?Id=Nis_Pep",
+                success: function (data) {
+                    data = JSON.parse(data.project);
+                    console.log(data);
+                    $("$CustomerName").val(data[0].CustomerName);
+                    $("$ProjectName").val(data[0].ProjectName);
+                    $("$ProjectId").val(data[0].ProjectId);
+                    $("$StartDate").val(data[0].startdate);
+                    $("$EndDate").val(data[0].enddate);
+                    $("$ddlProjectStatus").val(data[0].projectstatus);
+                    $("$ddlLocationGroup").val(data[0].locationgroup);
+                    $("$ddlPayrollState").val(data[0].PayrollState);
+                    $("$ddlSalesPerson").val(data[0].SalesPerson);
+                    $("$ddlProjectCategory").val(data[0].ProjectCategory);
+                    $("$ddlProjectType").val(data[0].ProjectType);
+                    $("$ddlSubDomain").val(data[0].SubDomain);
+                    $("$ddlTimesheetRepresentative").val(data[0].TimesheetRepresentative);
+                    $("$ddlClientInvoiceGroup").val(data[0].ClientInvoiceGroup);
+                    $("$ddlTimesheetType").val(data[0].TimesheetType);
+                    $("input[name='IsVmsTimeSheet']:checked").val(data[0].IsVmsTimesheet);
+                    $("$ddlPracticeType").val(data[0].PracticeType);
+                    $("$ddlRecruiter").val(data[0].Recruiter);
+                   
+                },
+                error: function () { }
+
+            })
         }
     </script>
 }

@@ -149,6 +149,15 @@ namespace WebApplication2.Controllers.Api
             return Ok(datatable);
         }
 
+        [HttpGet]
+        [Route("ProjectApi/GetProjectDataList")]
+        public IHttpActionResult ProjectDataList(string Id)
+        {
+            DataTab objRepo = new DataTab();
+            var datatable = objRepo.GetProjectData(Id);
+            return Ok(datatable);
+        }
+
 
     }
 }
