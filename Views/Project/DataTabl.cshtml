@@ -202,11 +202,37 @@
                 //    "emptyTable": "No data available"
                 //},
             });
-            function createButton(buttonType, rowID) {
-                var buttonText = buttonType == "edit" ? "Edit" : "Delete";
-                return '<button class="' + buttonType + '" type="button">' + buttonText + '</button>';
+
+            $("#btnSave").on("click", function () {
+                FindData();
+            })
+
+            function FindData() {
+                let Project = {
+                    ProjectType: "",
+                    PracticeType: "",
+                    CustomerName: "",
+                };
+                Project.ProjectType = $("#ddlProjectType").val();
+                Project.PracticeType = $("#ddlPracticeType").val();
+                Project.CustomerName = $("#CustomerName").val();
+
+                console.log(Project);
+                $.ajax({
+                    method: "GET",
+                    url: "/ProjectApi/GetFindProject",
+                    data: Project,
+                    success: function () { },
+                    error: function () { }
+
+                });
+
+
             }
-        });</script>
+        });
+            
+
+    </script>
 }
 
 
